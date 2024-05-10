@@ -17,14 +17,12 @@
         required
         :rules="[{ required: true, message: '不能为空' }]"
       />
-      <van-field
-        v-model="newPost.content"
-        label="内容"
-        placeholder="请输入内容"
-        type="textarea"
-        required
-        :rules="[{ required: true, message: '不能为空' }]"
-      />
+
+      <quill-editor
+        v-model:content="newPost.content"
+        content-type="html"
+        theme="snow"
+      ></quill-editor>
       <van-field
         v-model="newPost.category"
         label="分类"
@@ -48,6 +46,8 @@
   </div>
 </template>
 <script setup>
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref } from 'vue'
 import { showToast } from 'vant'
 
