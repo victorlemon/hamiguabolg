@@ -7,7 +7,7 @@
 </template>
 
 <style scoped>
-/* div {
-  background-color: #dcdcdc;
-} */
+div {
+  margin: 0 auto;
+}
 </style>
