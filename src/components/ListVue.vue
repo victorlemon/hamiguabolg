@@ -1,6 +1,5 @@
 <template>
   <div class="read-list" v-for="post in currentPageData" :key="post.id">
-    <div class="read-list-img read-list-img-2"></div>
     <div class="read-list-r">
       <li>
         <router-link :to="`/post/${post.id}`">
@@ -62,8 +61,10 @@ onMounted(async () => {
 .read-list {
   width: 100%;
   display: flex;
-  height: 144px;
+  padding: 1px;
+
   background-color: #fff;
+  border-bottom: 2px solid #f0f0f0;
 }
 .read-list .read-list-img {
   width: 48%;
@@ -98,9 +99,9 @@ onMounted(async () => {
   background-size: contain;
 } */
 .read-list-r {
-  width: 56%;
-  height: 93%;
+  width: 89%;
   margin: 5px;
+  margin: 0 auto;
   /* background-color: pink; */
 }
 .read-list-r li {
@@ -126,13 +127,13 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 15px;
+  font-size: 20px;
   text-align: left;
   color: #000;
 }
 .read-list-r li p {
   width: 82%;
-  font-size: 11px;
+  font-size: 17px;
 
   display: -webkit-box;
   -webkit-line-clamp: 3; /* 你可以根据需要调整这个值 */

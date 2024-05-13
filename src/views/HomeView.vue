@@ -148,6 +148,7 @@ a {
     STXihei,
     hei;
   color: #000;
+  padding: 0.8rem;
 }
 
 .hello .navtop {
