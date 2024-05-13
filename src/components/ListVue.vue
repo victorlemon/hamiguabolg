@@ -24,28 +24,26 @@
   </div>
   <van-pagination
     v-model="currentPage"
-    :total-items="totalPosts"
+    :total-items="postStore.totalPosts"
     :items-per-page="pageSize"
   />
 </template>
 
 <script setup>
+import { usePostsStore } from '@/stores/posts'
 import { ref, onMounted, computed } from 'vue'
 
 const posts = ref([])
+const postStore = usePostsStore()
 //分页逻辑
-const totalPosts = ref(0) // 新增一个响应式变量来存储总文章数
+// 新增一个响应式变量来存储总文章数
 let currentPage = ref(1)
 let pageSize = ref(4)
-
-// const totalPages = computed(() => {
-//   return Math.ceil(totalPosts.value / pageSize.value)
-// })
 
 const currentPageData = computed(() => {
   let start = (currentPage.value - 1) * pageSize.value
   let end = start + pageSize.value
-  return posts.value ? posts.value.slice(start, end) : []
+  return postStore.posts.slice(start, end)
 })
 //结束分页
 //把数据库获取的文章转变为txt
@@ -56,10 +54,7 @@ const convertHtmlToPlainText = (html) => {
 }
 
 onMounted(async () => {
-  const response = await fetch('http://127.0.0.1:3000/api/posts')
-  posts.value = await response.json()
-
-  totalPosts.value = posts.value.length
+  await postStore.fetchPosts()
 })
 </script>
 
