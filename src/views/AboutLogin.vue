@@ -123,7 +123,7 @@ const registerService = async () => {
 
   try {
     const response = await axios.post(
-      'http://localhost:3000/api/register',
+      'http://127.0.0.1:3000/api/register',
       formModel.value
     )
     ElMessage.success('注册成功')
@@ -147,7 +147,7 @@ const loginService = async () => {
 
   try {
     const response = await axios.post(
-      'http://localhost:3000/api/login',
+      'http://127.0.0.1:3000/api/login',
       formModel.value
     )
     const userStore = useUserStore()

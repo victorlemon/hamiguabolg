@@ -56,6 +56,7 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref } from 'vue'
 import { showToast } from 'vant'
+import { ElMessage } from 'element-plus'
 
 const newPost = ref({
   title: '',
@@ -64,12 +65,8 @@ const newPost = ref({
   category: ''
 })
 
-const newCategory = ref({
-  name: ''
-})
-
 const addPost = async () => {
-  await fetch('http://localhost:3000/api/posts', {
+  await fetch('http://127.0.0.1:3000/api/posts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -82,21 +79,7 @@ const addPost = async () => {
     content: '',
     category: ''
   }
-  showToast('文章添加成功')
-}
-
-const addCategory = async () => {
-  await fetch('http://localhost:3000/api/categories', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newCategory.value)
-  })
-  newCategory.value = {
-    name: ''
-  }
-  showToast('添加成功')
+  ElMessage.success('文章添加成功噢')
 }
 </script>
 
@@ -129,7 +112,7 @@ textarea {
 }
 .editor {
   width: 100%;
-  height: 400px;
+  height: auto;
   margin-bottom: 20px;
 }
 .field {

@@ -39,7 +39,9 @@
       <!-- 导航结束 -->
       <!-- banner开始 -->
       <div class="banner">
-        <div class="bannerlist"></div>
+        <div class="bannerlist">
+          <img src="../assets/pinia.svg" alt="" />
+        </div>
         <div class="bannerlist1"></div>
       </div>
       <div class="banner-con">
@@ -76,11 +78,11 @@
             <p>站长qq</p>
           </div>
         </div>
-        <div class="footer-con">
+        <div class="footer-con" @click="openGithub">
           <div class="ftop">技术支持： VictorLemon</div>
           <img src="../assets/github-fill.svg" alt="" />
         </div>
-        <audio id="myAudio" src="../assets/mysoul.mp3" autoplay></audio>
+        <!-- <audio id="myAudio" src="../assets/mysoul.mp3" autoplay></audio>
         <van-button type="primary" @click="playAudio" size="mini"
           >播放</van-button
         >
@@ -89,7 +91,7 @@
         >
         <van-button shape="circle" size="small" icon="play" class="play-button"
           >撒娇的</van-button
-        >
+        > -->
       </div>
     </div>
 
@@ -116,9 +118,14 @@ const showPopup = () => {
 }
 
 onMounted(async () => {
-  const response = await fetch('http://localhost:3000/api/posts')
+  const response = await fetch('http://127.0.0.1:3000/api/posts')
   posts.value = await response.json()
 })
+
+//导航到github
+const openGithub = () => {
+  window.open('https://github.com/victorlemon', '_blank')
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -183,9 +190,11 @@ a {
   width: 48%;
   border-radius: 12px;
   text-align: center;
-  background: url(../assets/88.jpg) no-repeat center;
-  background-size: cover;
-  background-color: #00a9ff;
+
+  background-size: contain;
+}
+.banner .bannerlist img {
+  margin: 0 auto;
 }
 .banner .bannerlist1 {
   display: flex;

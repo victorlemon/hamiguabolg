@@ -3,18 +3,20 @@
     <div class="read-list-img read-list-img-2"></div>
     <div class="read-list-r">
       <li>
-        <a href="">
+        <router-link :to="`/post/${post.id}`">
           <div class="h4">
-            <h4>{{ post.title }}</h4>
+            <h4>
+              {{ post.title }}
+            </h4>
             <div class="time">{{ post.summary }}{{ post.created_at }}</div>
           </div>
           <p>{{ convertHtmlToPlainText(post.content) }}</p>
-        </a>
+        </router-link>
         <div class="icon">
           <div class="icon-pp">{{ post.category }}</div>
           <div class="icon-kk">
             <img src="../assets/dianzan.svg" alt="" />
-            <div class="count">999</div>
+            <div class="count">{{ post.id }}</div>
           </div>
         </div>
       </li>
@@ -54,7 +56,7 @@ const convertHtmlToPlainText = (html) => {
 }
 
 onMounted(async () => {
-  const response = await fetch('http://localhost:3000/api/posts')
+  const response = await fetch('http://127.0.0.1:3000/api/posts')
   posts.value = await response.json()
 
   totalPosts.value = posts.value.length
@@ -156,7 +158,6 @@ p {
   align-items: center;
   justify-content: center;
 
-  font-size: 18px;
   height: 23px;
   line-height: 23px;
   color: #93b5cf;

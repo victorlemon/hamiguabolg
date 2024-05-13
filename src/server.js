@@ -114,4 +114,19 @@ app.post('/api/login', async (req, res) => {
   }
 })
 
+app.get('/api/posts/:id', (req, res) => {
+  db.query(
+    'SELECT * FROM posts WHERE id = ?',
+    [req.params.id],
+    (err, results) => {
+      if (err) throw err
+      if (results.length > 0) {
+        res.json(results[0])
+      } else {
+        res.status(404).json({ message: '文章未找到' })
+      }
+    }
+  )
+})
+
 app.listen(3000, () => console.log('Server running on port 3000'))
